@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer and Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts - Roboto for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Timer and Countdown</h1>
+        </header>
+        
+        <main>
+            <!-- Homepage View -->
+            <div id="homepage" class="view active">
+                <div class="options">
+                    <div class="option" id="stopwatch-option">
+                        <h2>Stopwatch</h2>
+                        <div class="icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                    <div class="option" id="countdown-option">
+                        <h2>Countdown</h2>
+                        <div class="icon">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stopwatch View -->
+            <div id="stopwatch-view" class="view">
+                <div class="timer-display">
+                    <span id="stopwatch-hours">00</span>:<span id="stopwatch-minutes">00</span>:<span id="stopwatch-seconds">00</span>
+                    <span id="stopwatch-milliseconds" class="small">000</span>
+                </div>
+                <div class="controls">
+                    <button id="stopwatch-start" class="btn btn-start">Start</button>
+                    <button id="stopwatch-stop" class="btn btn-stop">Stop</button>
+                    <button id="stopwatch-resume" class="btn btn-resume">Resume</button>
+                    <button id="stopwatch-clear" class="btn btn-clear">Clear</button>
+                </div>
+                <button id="stopwatch-back" class="btn btn-back">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </div>
+            
+            <!-- Countdown View -->
+            <div id="countdown-view" class="view">
+                <div class="timer-display">
+                    <span id="countdown-hours">00</span>:<span id="countdown-minutes">00</span>:<span id="countdown-seconds">00</span>
+                    <span id="countdown-milliseconds" class="small">000</span>
+                </div>
+                <div id="countdown-controls" class="controls">
+                    <button id="countdown-start" class="btn btn-start">Start</button>
+                    <button id="countdown-clear" class="btn btn-clear">Clear</button>
+                </div>
+                <div id="countdown-setup" class="numpad">
+                    <div class="numpad-row">
+                        <button class="btn btn-numpad" data-value="5">5</button>
+                        <button class="btn btn-numpad" data-value="6">6</button>
+                        <button class="btn btn-numpad" data-value="7">7</button>
+                        <button class="btn btn-numpad" data-value="8">8</button>
+                        <button class="btn btn-numpad" data-value="9">9</button>
+                        <button id="countdown-set" class="btn btn-set">Set</button>
+                    </div>
+                    <div class="numpad-row">
+                        <button class="btn btn-numpad" data-value="0">0</button>
+                        <button class="btn btn-numpad" data-value="1">1</button>
+                        <button class="btn btn-numpad" data-value="2">2</button>
+                        <button class="btn btn-numpad" data-value="3">3</button>
+                        <button class="btn btn-numpad" data-value="4">4</button>
+                        <button id="countdown-clear-setup" class="btn btn-clear-setup">Clear</button>
+                    </div>
+                </div>
+                <button id="countdown-back" class="btn btn-back">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Audio for countdown completion -->
+    <audio id="alert-sound" src="alert.mp3" preload="auto"></audio>    
+    <script src="script.js"></script>
+</body>
+</html>

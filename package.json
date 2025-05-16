@@ -1,0 +1,19 @@
+
+{
+    "name": "timer-and-countdown",
+    "version": "1.0.0",
+    "license": "UNLICENSED",
+    "description": "A modern stopwatch and countdown application",
+    "main": "script.js",
+    "scripts": {
+      "test": "jest"
+    },
+    "devDependencies": {
+      "jest": "^29.5.0",
+      "jest-environment-jsdom": "^29.5.0"
+    },
+    "jest": {
+      "testEnvironment": "jsdom",
+      "verbose": true
+    }
+  }
