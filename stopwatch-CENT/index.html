@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ultra Stopwatch</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center">
+  <main class="w-full flex flex-col items-center">
+    <h1 class="text-3xl font-bold mb-1 text-gray-800">Ultra Stopwatch</h1>
+    <p class="text-gray-500 mb-6 text-base">Cronómetro preciso, simple y ultra rápido.</p>
+    <!-- Display -->
+    <section
+      id="display-section"
+      class="w-full max-w-2xl bg-indigo-100 rounded-3xl border-4 border-gray-600 shadow-lg mb-8 px-4 py-2 flex flex-col items-center justify-center"
+      aria-label="Cronómetro"
+      role="region"
+    >
+      <div id="timer"
+           class="select-none text-[7vw] sm:text-[5vw] md:text-[4vw] lg:text-[3vw] font-mono font-bold text-black flex items-end"
+           aria-live="polite"
+           aria-atomic="true"
+           tabindex="0"
+           >
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+        <span class="text-[2vw] sm:text-[1vw] md:text-xl align-bottom ml-2" id="milliseconds">000</span>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="flex flex-row gap-8 w-full max-w-2xl justify-center">
+      <button
+        id="startPauseBtn"
+        class="flex-1 rounded-2xl bg-green-500 hover:bg-green-600 active:bg-green-700 text-black text-4xl font-semibold py-6 transition focus:outline-none focus:ring-4 focus:ring-green-400 shadow-lg"
+        aria-label="Iniciar cronómetro"
+      >
+        Start
+      </button>
+      <button
+        id="clearBtn"
+        class="flex-1 rounded-2xl bg-red-500 hover:bg-red-600 active:bg-red-700 text-black text-4xl font-semibold py-6 transition focus:outline-none focus:ring-4 focus:ring-red-400 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+        aria-label="Reiniciar cronómetro"
+        disabled
+      >
+        Clear
+      </button>
+    </section>
+    <p class="text-xs text-gray-400 mt-8 select-none">Atajos: <kbd class="px-1 bg-gray-200 rounded">Space</kbd> Iniciar/Pausar · <kbd class="px-1 bg-gray-200 rounded">C</kbd> o <kbd class="px-1 bg-gray-200 rounded">Esc</kbd> Limpiar</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+
