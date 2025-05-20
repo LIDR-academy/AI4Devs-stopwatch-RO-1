@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer App</title>
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white font-sans flex flex-col items-center justify-center min-h-screen p-4">
+    <!-- Initial View -->
+    <div id="initial-view" class="space-y-8">
+      <div class="flex justify-center gap-20">
+        <button id="btn-stopwatch" class="text-center">
+          <div class="text-2xl font-semibold mb-2">Stopwatch</div>
+          <div class="bg-green-500 w-16 h-16 rounded-md flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1z" clip-rule="evenodd" /></svg>
+          </div>
+        </button>
+
+        <button id="btn-countdown" class="text-center">
+          <div class="text-2xl font-semibold mb-2">Countdown</div>
+          <div class="bg-red-500 w-16 h-16 rounded-md flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 17a1 1 0 01-1-1V4a1 1 0 112 0v12a1 1 0 01-1 1z" clip-rule="evenodd" /></svg>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stopwatch View -->
+    <div id="stopwatch-view" class="hidden flex flex-col items-center space-y-6">
+      <div class="bg-blue-100 px-6 py-3 rounded-xl text-6xl font-mono">
+        <span id="stopwatch-display">00:00:00 <span class="text-2xl align-top">000</span></span>
+      </div>
+      <div class="flex gap-10">
+        <button id="stopwatch-start" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl text-xl">Start</button>
+        <button id="stopwatch-clear" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-xl text-xl">Clear</button>
+      </div>
+      <button onclick="goBack()" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-xl text-xl">← Back</button>
+    </div>
+
+    <!-- Countdown View -->
+    <div id="countdown-view" class="hidden flex flex-col items-center space-y-6">
+      <div class="bg-blue-100 px-6 py-3 rounded-xl text-6xl font-mono">
+        <span id="countdown-display">00:00:00 <span class="text-2xl align-top">000</span></span>
+      </div>
+      <div class="flex gap-6">
+        <div class="grid grid-cols-4 gap-4">
+          <button class="digit-btn text-xl" data-key="5">5</button>
+          <button class="digit-btn text-xl" data-key="6">6</button>
+          <button class="digit-btn text-xl" data-key="7">7</button>
+          <button class="digit-btn text-xl" data-key="8">8</button>
+          <button class="digit-btn text-xl" data-key="9">9</button>
+          <button class="digit-btn text-xl" data-key="0">0</button>
+          <button class="digit-btn text-xl" data-key="1">1</button>
+          <button class="digit-btn text-xl" data-key="2">2</button>
+          <button class="digit-btn text-xl" data-key="3">3</button>
+          <button class="digit-btn text-xl" data-key="4">4</button>
+        </div>
+        <div class="flex flex-col justify-between space-y-4">
+          <button id="countdown-set" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Set</button>
+          <button id="countdown-clear" class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-xl">Clear</button>
+        </div>
+      </div>
+      <button onclick="goBack()" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-xl text-xl">← Back</button>
+    </div>
+  </body>
+</html>
