@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch Jsaldaza</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+<body class="bg-gray-900 text-white font-sans min-h-screen flex items-center justify-center p-6">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="w-full max-w-3xl bg-gray-800 rounded-2xl shadow-[0_0_12px_rgba(255,255,255,0.08)] p-10 space-y-8 text-center transition-all duration-300">
+
+
+
+        <!-- TÍTULO -->
+        <h1 class="text-5xl font-bold text-amber-400 animate-pulse flex justify-center items-center gap-3">
+            <span>⏱</span> Stopwatch
+        </h1>
+
+        <!-- DISPLAY DE TIEMPO -->
+        <div id="display" class="text-7xl font-mono text-teal-300 tracking-wide transition-all duration-300">
+            00:00:00
+        </div>
+
+        <!-- CONTROLES EN BLOQUE CON ICONOS SVG -->
+        <section class="bg-gray-700 p-6 rounded-2xl shadow-md flex flex-wrap justify-center gap-4">
+            <!-- START -->
+            <button id="startBtn" class="btn flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v18l15-9L5 3z"></path>
+                </svg>
+                Start
+            </button>
+
+            <!-- PAUSE -->
+            <button id="pauseBtn" class="btn hidden flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 9v6m4-6v6"></path>
+                </svg>
+                Pause
+            </button>
+
+            <!-- RESET -->
+            <button id="resetBtn" class="btn hidden flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4 4v5h.582M19.418 19.418A9 9 0 006.582 6.582"></path>
+                </svg>
+                Reset
+            </button>
+
+            <!-- LAP -->
+            <button id="lapBtn" class="btn hidden flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364l-1.414-1.414M6.05 6.05l-1.414 1.414m12.728 0l1.414 1.414M6.05 17.95l1.414-1.414" />
+                </svg>
+                Lap
+            </button>
+        </section>
+
+        <!-- LAPS -->
+        <section id="lapsContainer" class="hidden text-left">
+            <h2 class="text-amber-400 font-semibold mb-2">Lap Times</h2>
+            <ul id="laps" class="space-y-1 max-h-40 overflow-y-auto text-sm text-white/90 px-4 text-left"></ul>
+        </section>
+
+    </main>
+
+    <!-- ESTILOS PERSONALIZADOS -->
+    <style>
+        .btn {
+            @apply px-6 py-3 text-lg rounded-lg bg-orange-500 hover:bg-orange-600 focus:ring-2 focus:ring-orange-400 transition-all font-semibold shadow w-36;
+        }
+
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+    </style>
+
+    <!-- LÓGICA -->
+    <script src="script.js"></script>
+</body>
+
+</html>
