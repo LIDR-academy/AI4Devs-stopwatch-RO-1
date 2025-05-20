@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch & Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="stopwatch">Stopwatch</button>
+            <button class="tab-button" data-tab="timer">Timer</button>
+        </div>
+
+        <div class="tab-content active" id="stopwatch-tab">
+            <h2>Stopwatch</h2>
+            <div class="display-container">
+                <div class="time-display" id="stopwatch-display">00:00:00<span class="milliseconds">000</span></div>
+            </div>
+            <div class="controls">
+                <button class="control-button start" id="stopwatch-start">Start</button>
+                <button class="control-button clear" id="stopwatch-clear">Clear</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="timer-tab">
+            <h2>Timer</h2>
+            <div class="timer-input">
+                <input type="number" id="hours" min="0" max="99" placeholder="HH">
+                <span>:</span>
+                <input type="number" id="minutes" min="0" max="59" placeholder="MM">
+                <span>:</span>
+                <input type="number" id="seconds" min="0" max="59" placeholder="SS">
+            </div>
+            <div class="display-container">
+                <div class="time-display" id="timer-display">00:00:00<span class="milliseconds">000</span></div>
+            </div>
+            <div class="controls">
+                <button class="control-button start" id="timer-start">Start</button>
+                <button class="control-button clear" id="timer-clear">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="timer-complete-sound" src="https://assets.mixkit.co/active_storage/sfx/951/951-preview.mp3"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
