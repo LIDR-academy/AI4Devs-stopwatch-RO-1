@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch & Countdown</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    /* Main menu */
+    #menu { display: flex; justify-content: space-around; align-items: center; height: 100vh; background: #f0fff0; }
+    .menu-item { text-align: center; cursor: pointer; }
+    .menu-item h2 { margin-bottom: 20px; }
+    .arrow-up { width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 80px solid #0f0; margin: 0 auto; }
+    .arrow-down { width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-top: 80px solid #f00; margin: 0 auto; }
+    /* Common view styling */
+    .view { display: none; min-height: 100vh; position: relative; }
+    .container { text-align: center; padding-top: 50px; }
+    .time-display { display: inline-flex; align-items: center; justify-content: center; width: 400px; height: 100px; margin-bottom: 20px; background: #eef0ff; border: 4px solid #333; border-radius: 20px; font-size: 60px; }
+    .msSpan { font-size: 20px; vertical-align: super; margin-left: 5px; }
+    .btn { border: 3px solid #333; border-radius: 10px; font-size: 24px; margin: 10px; cursor: pointer; white-space: nowrap; }
+    .btn-green { background: limegreen; padding: 10px 30px; }
+    .btn-red { background: red; padding: 10px 30px; }
+    .btn-grey { background: #aaa; padding: 10px 30px; }
+    #back-stopwatch, #back-countdown { position: absolute; left: 20px; bottom: 20px; background: navy; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; white-space: nowrap; }
+    /* Countdown keypad */
+    .keypad { display: grid; grid-template-columns: repeat(5, 80px); grid-gap: 10px; justify-content: center; margin-bottom: 20px; }
+    /* Ensure keypad buttons have fixed size and centered text */
+    .keypad .btn { width: 80px; height: 60px; padding: 0; display: flex; align-items: center; justify-content: center; margin: 0; font-size: 24px; }
+    .btn-digit { background: limegreen; }
+    .btn-set { background: limegreen; }
+    .btn-clear-cd { background: #aaa; }
+  </style>
+</head>
+<body>
+  <!-- Main Menu -->
+  <div id="menu">
+    <div id="to-stopwatch" class="menu-item">
+      <h2>Stopwatch</h2>
+      <div class="arrow-up"></div>
+    </div>
+    <div id="to-countdown" class="menu-item">
+      <h2>Countdown</h2>
+      <div class="arrow-down"></div>
+    </div>
+  </div>
+  <!-- Stopwatch View -->
+  <div id="stopwatch" class="view">
+    <div class="container">
+      <div id="time-stop" class="time-display">00:00:00.<span class="msSpan">000</span></div><br>
+      <button id="start-stop" class="btn btn-green">Start</button>
+      <button id="clear-stop" class="btn btn-red">Clear</button>
+    </div>
+    <button id="back-stopwatch">&larr; Back</button>
+  </div>
+  <!-- Countdown View -->
+  <div id="countdown" class="view">
+    <div class="container">
+      <div id="time-cd" class="time-display">00:00:00.<span class="msSpan">000</span></div>
+      <div class="keypad">
+        <button class="btn btn-digit" data-digit="5">5</button>
+        <button class="btn btn-digit" data-digit="6">6</button>
+        <button class="btn btn-digit" data-digit="7">7</button>
+        <button class="btn btn-digit" data-digit="8">8</button>
+        <button class="btn btn-digit" data-digit="9">9</button>
+        <button class="btn btn-digit" data-digit="0">0</button>
+        <button class="btn btn-digit" data-digit="1">1</button>
+        <button class="btn btn-digit" data-digit="2">2</button>
+        <button class="btn btn-digit" data-digit="3">3</button>
+        <button class="btn btn-digit" data-digit="4">4</button>
+        <button id="set-cd" class="btn btn-set">Set</button>
+        <button id="clear-cd" class="btn btn-clear-cd">Clear</button>
+      </div>
+    </div>
+    <button id="back-countdown">&larr; Back</button>
+  </div>
+  <script>
+    // Utility
+    function pad(num, size) { return num.toString().padStart(size, '0'); }
+    // Beep on finish
+    function playBeep() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = 1000;
+      gain.gain.setValueAtTime(1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.2);
+    }
+    // Elements
+    const menu = document.getElementById('menu');
+    const swView = document.getElementById('stopwatch');
+    const cdView = document.getElementById('countdown');
+    swView.style.display = 'none';
+    cdView.style.display = 'none';
+    // Navigation
+    document.getElementById('to-stopwatch').onclick = () => { menu.style.display = 'none'; swView.style.display = 'block'; };
+    document.getElementById('to-countdown').onclick = () => { menu.style.display = 'none'; cdView.style.display = 'block'; };
+    document.getElementById('back-stopwatch').onclick = () => { swView.style.display = 'none'; menu.style.display = 'flex'; };
+    document.getElementById('back-countdown').onclick = () => { cdView.style.display = 'none'; menu.style.display = 'flex'; };
+    // Stopwatch
+    let swInterval = null, swStart = 0, swElapsed = 0, swRunning = false;
+    const timeStop = document.getElementById('time-stop');
+    const btnStartStop = document.getElementById('start-stop');
+    const btnClearStop = document.getElementById('clear-stop');
+    btnStartStop.onclick = () => {
+      if (!swRunning) {
+        swStart = Date.now() - swElapsed;
+        swInterval = setInterval(() => {
+          swElapsed = Date.now() - swStart;
+          const ms = swElapsed % 1000;
+          const total = Math.floor(swElapsed / 1000);
+          const s = total % 60;
+          const m = Math.floor(total / 60) % 60;
+          const h = Math.floor(total / 3600);
+          timeStop.innerHTML = `${pad(h,2)}:${pad(m,2)}:${pad(s,2)}.<span class="msSpan">${pad(ms,3)}</span>`;
+        }, 10);
+        swRunning = true;
+        btnStartStop.textContent = 'Stop'; btnStartStop.classList.replace('btn-green','btn-red');
+      } else {
+        clearInterval(swInterval);
+        swRunning = false;
+        btnStartStop.textContent = 'Start'; btnStartStop.classList.replace('btn-red','btn-green');
+      }
+    };
+    btnClearStop.onclick = () => {
+      clearInterval(swInterval);
+      swRunning = false; swElapsed = 0;
+      timeStop.innerHTML = `00:00:00.<span class="msSpan">000</span>`;
+      btnStartStop.textContent = 'Start'; btnStartStop.classList.replace('btn-red','btn-green');
+    };
+    // Countdown
+    let cdInterval = null, cdRemaining = 0, cdInput = '';
+    const timeCd = document.getElementById('time-cd');
+    const digits = document.querySelectorAll('.btn-digit');
+    const btnSetCd = document.getElementById('set-cd');
+    const btnClearCd = document.getElementById('clear-cd');
+    function renderCd(ms) {
+      const rem = ms < 0 ? 0 : ms;
+      const total = Math.floor(rem / 1000);
+      const s = total % 60;
+      const m = Math.floor(total / 60) % 60;
+      const h = Math.floor(total / 3600);
+      const msPart = rem % 1000;
+      timeCd.innerHTML = `${pad(h,2)}:${pad(m,2)}:${pad(s,2)}.<span class="msSpan">${pad(msPart,3)}</span>`;
+    }
+    function parseInput() {
+      const s = cdInput.padStart(6,'0');
+      const h = parseInt(s.slice(0,2));
+      const m = parseInt(s.slice(2,4));
+      const sec = parseInt(s.slice(4,6));
+      return ((h*3600) + (m*60) + sec) * 1000;
+    }
+    function clearCountdown() {
+      clearInterval(cdInterval);
+      cdInterval = null;
+      cdInput = '';
+      cdRemaining = 0;
+      digits.forEach(d => d.disabled = false);
+      btnSetCd.disabled = false;
+      renderCd(0);
+    }
+    digits.forEach(btn => btn.onclick = () => {
+      if (cdInterval) return;
+      if (cdInput.length < 6) {
+        cdInput += btn.dataset.digit;
+        cdRemaining = parseInput();
+        renderCd(cdRemaining);
+      }
+    });
+    btnClearCd.onclick = () => clearCountdown();
+    btnSetCd.onclick = () => {
+      if (cdInterval || !cdInput) return;
+      cdRemaining = parseInput();
+      if (cdRemaining <= 0) return;
+      digits.forEach(d => d.disabled = true);
+      btnSetCd.disabled = true;
+      cdInterval = setInterval(() => {
+        cdRemaining -= 10;
+        renderCd(cdRemaining);
+        if (cdRemaining <= 0) {
+          playBeep();
+          alert("Time's up!");
+          clearCountdown();
+        }
+      }, 10);
+    };
+  </script>
+</body>
+</html>
