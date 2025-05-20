@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Stopwatch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        .timer-display {
+            font-size: 5rem;
+            font-weight: bold;
+            background-color: #f0f4ff;
+            border-radius: 16px;
+            border: 2px solid #333;
+        }
+        
+        .green-button {
+            background-color: #4ade80;
+            border-radius: 12px;
+            border: 2px solid #333;
+        }
+        
+        .red-button {
+            background-color: #f87171;
+            border-radius: 12px;
+            border: 2px solid #333;
+        }
+        
+        .blue-button {
+            background-color: #60a5fa;
+            border-radius: 12px;
+            border: 2px solid #333;
+        }
+        
+        .gray-button {
+            background-color: #d1d5db;
+            border-radius: 12px;
+            border: 2px solid #333;
+        }
+        
+        .num-button {
+            background-color: #4ade80;
+            border-radius: 8px;
+            border: 2px solid #333;
+        }
+        
+        .header-bar, .footer-bar {
+            background-color: #1e40af;
+            color: white;
+        }
+        
+        @keyframes flash {
+            0% { background-color: #f0f4ff; }
+            50% { background-color: #fecaca; }
+            100% { background-color: #f0f4ff; }
+        }
+        
+        .flash-animation {
+            animation: flash 1s infinite;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+    <!-- Header -->
+    <div class="header-bar p-4 text-center text-xl">
+        <a href="#" class="text-white">www.online-stopwatch.com</a>
+    </div>
+    
+    <!-- Main content -->
+    <div class="flex-grow flex flex-col items-center justify-center p-4">
+        <!-- Main page (initial view) -->
+        <div id="main-page" class="flex flex-col md:flex-row w-full max-w-4xl justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
+            <div class="flex flex-col items-center w-full md:w-1/2">
+                <h2 class="text-5xl font-bold mb-8">Stopwatch</h2>
+                <button id="goto-stopwatch" class="w-48 h-48">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <polygon points="50,10 90,80 10,80" fill="#4ade80" stroke="#333" stroke-width="3"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col items-center w-full md:w-1/2">
+                <h2 class="text-5xl font-bold mb-8">Countdown</h2>
+                <button id="goto-countdown" class="w-48 h-48">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <polygon points="50,90 90,20 10,20" fill="#f87171" stroke="#333" stroke-width="3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Stopwatch page -->
+        <div id="stopwatch-page" class="hidden flex flex-col w-full max-w-4xl items-center">
+            <div id="stopwatch-display" class="timer-display w-full py-4 px-8 mb-8 text-center">
+                00:00:00<span class="text-2xl">000</span>
+            </div>
+            <div class="flex flex-col md:flex-row w-full space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                <button id="stopwatch-start" class="green-button w-full md:w-1/2 py-4 text-3xl font-semibold">
+                    Start
+                </button>
+                <button id="stopwatch-clear" class="red-button w-full md:w-1/2 py-4 text-3xl font-semibold">
+                    Clear
+                </button>
+            </div>
+        </div>
+        
+        <!-- Countdown setup page -->
+        <div id="countdown-setup-page" class="hidden flex flex-col w-full max-w-4xl items-center">
+            <div id="countdown-setup-display" class="timer-display w-full py-4 px-8 mb-8 text-center">
+                00:00:00<span class="text-2xl">000</span>
+            </div>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-2 w-full mb-4">
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="5">5</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="6">6</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="7">7</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="8">8</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="9">9</button>
+                <button id="countdown-set" class="num-button py-4 text-2xl font-semibold col-span-1" data-value="set">Set</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="0">0</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="1">1</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="2">2</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="3">3</button>
+                <button class="num-button py-4 text-2xl font-semibold num-pad" data-value="4">4</button>
+                <button id="countdown-setup-clear" class="gray-button py-4 text-2xl font-semibold col-span-1">Clear</button>
+            </div>
+        </div>
+        
+        <!-- Countdown page -->
+        <div id="countdown-page" class="hidden flex flex-col w-full max-w-4xl items-center">
+            <div id="countdown-display" class="timer-display w-full py-4 px-8 mb-8 text-center">
+                00:00:00<span class="text-2xl">000</span>
+            </div>
+            <div class="flex flex-col md:flex-row w-full space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                <button id="countdown-start" class="green-button w-full md:w-1/2 py-4 text-3xl font-semibold">
+                    Start
+                </button>
+                <button id="countdown-clear" class="red-button w-full md:w-1/2 py-4 text-3xl font-semibold">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer-bar p-4">
+        <button id="back-button" class="flex items-center text-white text-xl">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back
+        </button>
+    </div>
+    
+    <script src="./script.js"></script>
+</body>
+</html>
