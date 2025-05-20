@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch & Countdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-[500px]">
+        <div class="mb-6">
+            <select id="modeSelector" class="w-full p-2 border rounded-md bg-gray-50">
+                <option value="stopwatch">Cronómetro</option>
+                <option value="countdown">Cuenta atrás</option>
+            </select>
+        </div>
+        
+        <div class="text-center">
+            <div id="display" class="text-6xl font-mono mb-6 p-4 bg-gray-50 rounded-lg border">00:00:00</div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <button id="startBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg">
+                    Start
+                </button>
+                <button id="clearBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-lg">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
