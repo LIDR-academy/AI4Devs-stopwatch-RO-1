@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timer & Stopwatch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    main {
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    #display {
+      font-size: 5rem;
+      background-color: #eaeaff;
+      padding: 20px 40px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 4px solid #444;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    #display span#ms {
+      font-size: 1rem;
+      vertical-align: top;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .green {
+      background-color: #00cc00;
+      color: white;
+    }
+
+    .green:hover {
+      background-color: #009900;
+    }
+
+    .red {
+      background-color: #ff3333;
+      color: white;
+    }
+
+    .red:hover {
+      background-color: #cc0000;
+    }
+
+    #controls {
+      margin-bottom: 20px;
+    }
+
+    #countdownInput {
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      font-size: 1rem;
+      padding: 5px;
+      width: 60px;
+      text-align: center;
+      margin-left: 10px;
+    }
+
+    @media (max-width: 480px) {
+      #display {
+        font-size: 3rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <!-- Initial Screen -->
+    <section id="menu">
+      <h1>Select a Timer Mode</h1>
+      <button onclick="selectMode('stopwatch')">Stopwatch</button>
+      <button onclick="selectMode('countdown')">Countdown</button>
+    </section>
+
+    <!-- Timer UI -->
+    <section id="timer" style="display:none;">
+      <div id="display">00:00:00<span id="ms">000</span></div>
+
+      <div id="controls">
+        <button id="startBtn" class="green" onclick="start()">Start</button>
+        <button id="pauseBtn" onclick="pause()">Pause</button>
+        <button id="clearBtn" class="red" onclick="clearTimer()">Clear</button>
+      </div>
+
+      <div id="countdownInput" style="display:none;">
+        <label>Set Time (minutes): <input type="number" id="countdownMinutes" min="1" /></label>
+        <button onclick="setCountdown()">Set Countdown</button>
+      </div>
+
+      <button onclick="goHome()">Back to Menu</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
