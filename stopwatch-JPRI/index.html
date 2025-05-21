@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronómetro y Temporizador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+    }
+
+    section {
+      display: none;
+      padding: 2rem;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .button {
+      padding: 1rem 2rem;
+      margin: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .button:active {
+      background-color: #0056b3;
+    }
+
+    .time-display {
+      font-size: 4rem;
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cronómetro y Temporizador</h1>
+  </header>
+
+  <!-- Pantalla Home -->
+  <section id="home" class="active">
+    <h2>Bienvenido</h2>
+    <button class="button" onclick="navigateTo('cronometro')">Ir a Cronómetro</button>
+    <button class="button" onclick="navigateTo('temporizador')">Ir a Temporizador</button>
+  </section>
+
+  <!-- Pantalla Cronómetro -->
+  <section id="cronometro">
+    <h2>Cronómetro</h2>
+    <div class="time-display" id="cronometro-display">00:00:00</div>
+    <button class="button">Iniciar</button>
+    <button class="button">Pausar</button>
+    <button class="button">Reiniciar</button>
+    <br>
+    <button class="button" onclick="navigateTo('home')">Volver</button>
+  </section>
+
+  <!-- Pantalla Temporizador -->
+  <section id="temporizador">
+    <h2>Temporizador</h2>
+    <div>
+      <label>Minutos: <input type="number" id="minutos" min="0" max="59" value="0"></label>
+      <label>Segundos: <input type="number" id="segundos" min="0" max="59" value="0"></label>
+    </div>
+    <div class="time-display" id="temporizador-display">00:00</div>
+    <button class="button">Iniciar</button>
+    <button class="button">Pausar</button>
+    <button class="button">Reiniciar</button>
+    <br>
+    <button class="button" onclick="navigateTo('home')">Volver</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
