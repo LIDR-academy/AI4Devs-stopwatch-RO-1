@@ -1,59 +1,34 @@
+You're an Frontend expert with knowledge in HTML, Javascript and CSS. 
+Create a webpage that has a stopwatch and a countdown. 
 
-Create a webpage that revere a string wrote by the user, following those acceptance criteria:
-Technical critera:
-1. Separate the html and javascript code into index.html and script.js
-2. Use JS Vanilla
-3. Apply the SOLID principles
-4. Implement all necesary logs in the console
-5. Catch all possible exceptions
-6. For CSS use tailwind
-7. Make it responsive website
+## Technical specs
 
-Functional criteria:
-1. There will and input text to write the text to reverse and the button to trigger the reverse action.
-2. The minimun lenght will be 3 characters and the maximun will be 20
-3. If the min and max criteria aren't accomplish, mark the input with most appropiated tailwind style and show an error alert with a error message
-4. If the text given is valid:
-    4.1. Reverse it and show it bellow the input, apply the style that you consider
-    4.2. Show a succesful alert
-    4.3. Clean the input
-    4.4. Hide the reversed text and the succesful alert after 10 seconds to be ready to use again
-5. The reverse action also will be triggerred with the enter/return key
+### General
+* Let's work with 3 files, index.html, script.js and styles.css
+* Use the main-screen image as reference
+* There will be a main screen with the Stopwatch and Countdown options
+* The page will be a SPA, so everything will be in the index
+* When you click on one of the options, you'll show another window with the selected functionality: Stopwatch or Countdown
+* In the Stopwatch/Countdown screen, there will be a back button to return to the main screen
+* I want an animation when changing from the main screen to the Stopwatch/Countdown screen and when going back to the main screen
+* Make it responsive
 
-General criteria:
-1. Add an attractive and funny title and description
+### Stopwatch
+* Use stopwatch image as reference
+* There will be three buttons: Start/Pause/Continue, Lap and Clear
+* Start button is green and when you click it it changes the text to Pause and the stopwatch will start
+* When you click Pause button, it will change to blue and text to Continue, and the stopwatch will pause
+* When you click Continue button, it will change back to Pause and stopwatch will continue * Lap button will be disabled when the stopwatch is not running, when is stopped at the beginning or when it is paused
+* Each time you click on the Lap button, some information will be added in the table, with the number of lap, lap time, and maybe total time and any relevant information that a lap count function may have
+* Clear button will be red, it will be disabled when the stopwatch is in 0, and on click it will reset the stopwatch information and lap information
 
+### Countdown
+* Use countdown image as reference
+* There will be number buttons from 0 to 9, a Set button and a Clear button
+* Numbers will only work when the countdown is not working
+* Set will start the countdown - Clear will reset the countdown to 0 and disable the functionality
+* When the countdown reaches 0, I want it to have a visual animation so it can get the attention of the person
 
-Ask me all the extra information that you need before build it
+This is a simple excercise, but if you have any question before starting, ask me.
 
-
-
-________________________________________________________________________
-Acá ChatGPT me hizo estas preguntas extra, las cuales le responsdí:
-________________________________________________________________________
-
-
-
-Here the extra info requested:
-
-
-Title and Description: Do you have any specific themes or ideas in mind for the attractive and funny title and description? Or should I come up with something creative?
-R:/ I am taking a DEV AI course, this is the firs challenge using GPT, so, be creative
-
-Error and Success Alerts: Is there a specific style or design you'd like for the error and success alerts? For example, should they appear as pop-up modals, inline messages, or toast notifications? Do you have any preferred error and success messages?
-R:/ Use the Alert tailwindui component
-
-Tailwind CSS: Do you have a preferred method for including Tailwind CSS? Should I use a CDN link, or would you prefer that I set up Tailwind with a build process (e.g., using PostCSS)?
-R:/ Use CDN link
-
-Logging: For the console logs, is there a specific format or level of detail you'd like? For instance, should logs include timestamps, or follow a certain structure?
-R:/ Use the most standard format
-
-Exception Handling: Are there any specific exceptions or edge cases you'd like to be handled beyond input length validation? For example, handling non-string inputs, or unexpected errors during the reverse operation.
-R:/ Consider avoid empty string
-
-Responsive Design: Are there specific devices or screen sizes you'd like the site optimized for?
-R:/ No, it will support most devices possible
-
-Any Additional Preferences: Is there anything else you'd like to specify, such as color schemes, fonts, or any other functional or design aspects?
-R:/ if is possilbe use the colors of this website: https://www.lidr.co/
+Feel free to add any interesting or impresive design, without being too invasive
