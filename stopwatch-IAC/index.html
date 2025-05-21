@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cronómetro y Temporizador</title>
+    <style>
+      body {
+        font-family: 'Digital-7', monospace, sans-serif;
+        background-color: #fff;
+        margin: 0;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      main {
+        text-align: center;
+      }
+
+      .display {
+        background-color: #ecf0ff;
+        border: 5px solid #333;
+        border-radius: 25px;
+        padding: 1rem 2rem;
+        font-size: 6rem;
+        position: relative;
+        min-width: 600px;
+      }
+
+      .milliseconds {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        font-size: 2rem;
+      }
+
+      .buttons {
+        margin-top: 2rem;
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      button {
+        font-size: 2rem;
+        font-weight: bold;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        min-width: 180px;
+      }
+
+      .start-btn {
+        background: linear-gradient(to bottom, limegreen, green);
+        color: black;
+      }
+
+      .clear-btn {
+        background: linear-gradient(to bottom, red, darkred);
+        color: white;
+      }
+
+      .flash {
+        animation: flash 1s infinite;
+      }
+
+      @keyframes flash {
+        0%, 100% { background-color: #ecf0ff; }
+        50% { background-color: #ffcccc; }
+      }
+
+      #modeToggle {
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        background: none;
+        border: 2px solid #333;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .input-time {
+        margin: 1rem auto;
+        display: none;
+        font-size: 1.2rem;
+      }
+
+      .input-time input {
+        font-size: 1.5rem;
+        width: 120px;
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+<main>
+    <section>
+        <div class="display" role="timer" aria-label="Visualizador de tiempo">
+            <span id="time">00:00:00</span>
+            <span class="milliseconds" id="ms">000</span>
+        </div>
+
+        <div class="input-time" id="countdownInput">
+            <label for="setTime">HH:MM:SS: </label>
+            <input type="text" id="setTime" placeholder="00:08:00" />
+        </div>
+
+        <div class="buttons">
+            <button id="startPauseBtn" class="start-btn" aria-label="Iniciar o pausar">Start</button>
+            <button id="clearBtn" class="clear-btn" aria-label="Reiniciar">Clear</button>
+        </div>
+
+        <button id="modeToggle" aria-label="Cambiar modo">Cambiar a Cuenta Atrás</button>
+    </section>
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>
