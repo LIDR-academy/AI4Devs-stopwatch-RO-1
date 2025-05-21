@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timer and Countdown</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Screen -->
+        <div id="main-screen" class="screen active">
+            <h1>Timer App</h1>
+            <div class="options">
+                <div class="option" id="stopwatch-option">
+                    <h2>Stopwatch</h2>
+                    <div class="arrow-icon up-arrow"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="option" id="countdown-option">
+                    <h2>Countdown</h2>
+                    <div class="arrow-icon down-arrow"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stopwatch Screen -->
+        <div id="stopwatch-screen" class="screen">
+            <div class="back-button">← Back</div>
+            <h2>Stopwatch</h2>
+            
+            <div class="timer-display">
+                <span id="stopwatch-display">00:00:00</span>
+                <span id="milliseconds">000</span>
+            </div>
+            
+            <div class="controls">
+                <button id="stopwatch-start" class="control-btn start-btn">Start</button>
+                <button id="stopwatch-lap" class="control-btn lap-btn" disabled>Lap</button>
+                <button id="stopwatch-clear" class="control-btn clear-btn" disabled>Clear</button>
+            </div>
+            
+            <div class="laps-container">
+                <table id="laps-table">
+                    <thead>
+                        <tr>
+                            <th>Lap</th>
+                            <th>Lap Time</th>
+                            <th>Total Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="laps-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Countdown Screen -->
+        <div id="countdown-screen" class="screen">
+            <div class="back-button">← Back</div>
+            <h2>Countdown</h2>
+            
+            <div class="timer-display">
+                <span id="countdown-display">00:00:00</span>
+                <span id="countdown-milliseconds">000</span>
+            </div>
+            
+            <div class="numpad">
+                <div class="num-row">
+                    <button class="num-btn">5</button>
+                    <button class="num-btn">6</button>
+                    <button class="num-btn">7</button>
+                    <button class="num-btn">8</button>
+                    <button class="num-btn">9</button>
+                    <button id="set-btn" class="control-btn set-btn">Set</button>
+                </div>
+                <div class="num-row">
+                    <button class="num-btn">0</button>
+                    <button class="num-btn">1</button>
+                    <button class="num-btn">2</button>
+                    <button class="num-btn">3</button>
+                    <button class="num-btn">4</button>
+                    <button id="countdown-clear" class="control-btn clear-btn">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
