@@ -1,0 +1,152 @@
+/* Global Styles */
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Touch device optimizations */ @media (hover: none) { .control-btn, .num-btn, .back-button { cursor: default; } .control-btn:active, .num-btn:active { transform: scale(0.95); } }
+html, body { height: 100%; width: 100%; overflow-x: hidden; }
+
+body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: 
+#f5f5f5; padding: 20px; }
+
+.container { width: 100%; max-width: 600px; margin: 0 auto; background-color: white; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); border-radius: 15px; overflow: hidden; position: relative; height: 90vh; max-height: 700px; min-height: 500px; }
+
+.screen { position: absolute; width: 100%; height: 100%; padding: 20px; transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; opacity: 0; transform: translateX(100%); display: none; }
+
+.screen.active { opacity: 1; transform: translateX(0); display: block; }
+
+h1 { text-align: center; margin-bottom: 20px; color: #333; padding-top: 15px; font-size: clamp(24px, 6vw, 32px); }
+
+h2 { text-align: center; margin-bottom: 15px; color: #333; font-size: clamp(20px, 5vw, 28px); }
+
+/* Main Screen */ .options { display: flex; flex-direction: row; height: calc(100% - 100px); }
+
+@media (max-width: 480px) { .options { flex-direction: column; }
+
+.divider {
+    width: 100%;
+    height: 1px;
+}
+}
+
+.option { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 30px; transition: background-color 0.3s ease; }
+
+.option:hover { background-color: 
+#f9f9f9; }
+
+.divider { width: 1px; background-color: #ddd; }
+
+.arrow-icon { margin-top: 30px; width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; position: relative; }
+
+.up-arrow { border-bottom: 40px solid 
+#4caf50; }
+
+.down-arrow { border-top: 40px solid 
+#f44336; }
+
+/* Shared Timer Styles */ .timer-display { text-align: center; background-color: 
+#f0f0f5; border-radius: 10px; padding: 15px 10px; margin: 15px 0; font-size: clamp(24px, 5vw, 36px); font-weight: bold; border: 2px solid #ddd; position: relative; word-break: break-all; }
+
+#milliseconds, #countdown-milliseconds { font-size: clamp(14px, 3vw, 20px); position: absolute; bottom: 5px; right: 15px; color: #666; }
+
+.controls { display: flex; justify-content: space-between; margin: 15px 0; gap: 10px; flex-wrap: wrap; }
+
+.control-btn { padding: 10px 15px; font-size: clamp(14px, 3vw, 18px); border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.1s; font-weight: bold; flex: 1; min-width: 80px; }
+
+.control-btn:active { transform: scale(0.98); }
+
+.control-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.start-btn { background-color: 
+#4caf50; color: white; }
+
+.pause-btn { background-color: 
+#ff9800; color: white; }
+
+.continue-btn { background-color: 
+#2196f3; color: white; }
+
+.lap-btn { background-color: 
+#9c27b0; color: white; }
+
+.clear-btn { background-color: 
+#f44336; color: white; }
+
+.set-btn { background-color: 
+#4caf50; color: white; }
+
+/* Back Button */ .back-button { position: absolute; top: 15px; left: 15px; cursor: pointer; padding: 8px 12px; background-color: 
+#f0f0f0; border-radius: 5px; transition: background-color 0.3s; font-size: clamp(14px, 3vw, 16px); z-index: 10; }
+
+.back-button:hover { background-color: #ddd; }
+
+/* Laps Table */ .laps-container { max-height: 30vh; overflow-y: auto; margin-top: 15px; border: 1px solid #ddd; border-radius: 5px; }
+
+#laps-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+
+#laps-table th, #laps-table td { padding: 8px 5px; text-align: center; border-bottom: 1px solid #ddd; font-size: clamp(12px, 3vw, 14px); word-break: break-word; }
+
+#laps-table th { background-color: 
+#f5f5f5; position: sticky; top: 0; }
+
+#laps-table tr:nth-child(even) { background-color: 
+#f9f9f9; }
+
+/* Countdown Numpad */ .numpad { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+
+.num-row { display: flex; gap: 5px; justify-content: space-between; flex-wrap: wrap; }
+
+.num-btn { flex: 1; padding: 12px 5px; font-size: clamp(16px, 4vw, 20px); background-color: 
+#4caf50; color: black; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.1s; font-weight: bold; min-width: 40px; }
+
+.num-btn:active { transform: scale(0.98); }
+
+/* Media Queries for Better Responsiveness */ @media (max-width: 375px) { .screen { padding: 15px 10px; }
+
+.timer-display {
+    padding: 10px 5px;
+}
+
+.control-btn, .num-btn {
+    padding: 8px 5px;
+    min-width: 30px;
+}
+
+#laps-table th, #laps-table td {
+    padding: 6px 3px;
+    font-size: 12px;
+}
+
+.back-button {
+    padding: 5px 8px;
+}
+}
+
+@media (min-width: 768px) { .container { border-radius: 20px; }
+
+.screen {
+    padding: 30px;
+}
+
+.control-btn, .num-btn {
+    padding: 15px;
+}
+
+.timer-display {
+    padding: 25px;
+    margin: 25px 0;
+}
+}
+
+/* Animation for countdown completion */ 
+@keyframes flash {
+    0%, 100% {
+        background-color: #f0f0f5;
+        color: #333;
+    }
+    50% {
+        background-color: #ffd700;
+        color: #333;
+    }
+}
+
+.timer-flash {
+    animation: flash 0.8s ease-in-out infinite;
+}
