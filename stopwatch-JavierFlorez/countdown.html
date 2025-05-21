@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuenta Regresiva | Tiempo Perfecto</title>
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <script defer src="js/countdown.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4 flex flex-col items-center relative">
+
+  <!-- Enlace regresar superior izquierdo -->
+  <a href="index.html" class="absolute top-4 left-4 text-blue-600 hover:underline text-sm">← Regresar</a>
+
+  <h1 class="text-4xl text-gray-800 mb-4 mt-12">⏳ Cuenta Regresiva</h1>
+
+  <!-- Display de tiempo -->
+  <div id="timeDisplay" class="text-5xl bg-white text-gray-900 px-10 py-4 rounded-xl shadow-md mb-6 tracking-widest">
+    00:00:00.000
+  </div>
+
+  <!-- Teclado numérico -->
+  <div id="keypad" class="grid grid-cols-3 gap-4 mb-4">
+    <!-- Generado dinámicamente -->
+  </div>
+
+  <!-- Botones de configuración -->
+  <div id="setupButtons" class="flex gap-4 mb-4">
+    <button id="setBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-xl transition duration-300">Set</button>
+    <button id="clearBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-xl transition duration-300">Clear</button>
+  </div>
+
+  <!-- Botones de acción -->
+  <div id="actionButtons" class="flex gap-4 mb-4 hidden">
+    <button id="startPauseBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-xl transition duration-300">Start</button>
+    <button id="clearBtn2" class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-xl transition duration-300">Clear</button>
+  </div>
+
+</body>
+</html>
