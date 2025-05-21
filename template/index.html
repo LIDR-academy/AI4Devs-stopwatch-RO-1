@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Timer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+    <div class="container">
+        <div id="main-menu" class="screen active">
+            <h1>Awesome Timer</h1>
+            <button id="stopwatch-btn" class="menu-button">Stopwatch</button>
+            <button id="countdown-btn" class="menu-button">Countdown</button>
+        </div>
+
+        <div id="stopwatch-screen" class="screen">
+            <button class="back-button">Back</button>
+            <h1>Stopwatch</h1>
+            <div class="display">
+                <span id="sw-hours">00</span>:<span id="sw-minutes">00</span>:<span id="sw-seconds">00</span>.<span id="sw-milliseconds" class="milliseconds">000</span>
+            </div>
+            <div class="controls">
+                <button id="sw-start-btn" class="control-button start-btn">Start</button>
+                <button id="sw-pause-btn" class="control-button pause-btn hidden">Pause</button>
+                <button id="sw-continue-btn" class="control-button continue-btn hidden">Continue</button>
+                <button id="sw-clear-btn" class="control-button clear-btn">Clear</button>
+            </div>
+        </div>
+
+        <div id="countdown-screen" class="screen">
+            <button class="back-button">Back</button>
+            <h1>Countdown</h1>
+            <div class="display">
+                <span id="cd-hours">00</span>:<span id="cd-minutes">00</span>:<span id="cd-seconds">00</span>.<span id="cd-milliseconds" class="milliseconds">000</span>
+            </div>
+            <div class="countdown-input-section">
+                <div class="keypad">
+                    <button class="num-btn">1</button>
+                    <button class="num-btn">2</button>
+                    <button class="num-btn">3</button>
+                    <button class="num-btn">4</button>
+                    <button class="num-btn">5</button>
+                    <button class="num-btn">6</button>
+                    <button class="num-btn">7</button>
+                    <button class="num-btn">8</button>
+                    <button class="num-btn">9</button>
+                    <button class="num-btn zero">0</button>
+                </div>
+                <div class="countdown-set-controls">
+                    <button id="cd-set-btn" class="control-button start-btn">Set</button>
+                    <button id="cd-clear-input-btn" class="control-button clear-btn">Clear Input</button>
+                </div>
+            </div>
+
+            <div class="countdown-run-controls hidden">
+                <button id="cd-start-btn" class="control-button start-btn">Start</button>
+                <button id="cd-pause-btn" class="control-button pause-btn hidden">Pause</button>
+                <button id="cd-continue-btn" class="control-button continue-btn hidden">Continue</button>
+                <button id="cd-clear-run-btn" class="control-button clear-btn">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

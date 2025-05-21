@@ -1,0 +1,206 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: #fff;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Menu Buttons */
+.menu-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    margin: 15px;
+    font-size: 1.8em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button:hover {
+    background: #0056b3;
+    transform: translateY(-3px);
+}
+
+.menu-button:active {
+    transform: translateY(0);
+}
+
+/* Back Button */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+    background: #5a6268;
+}
+
+/* Display */
+.display {
+    font-size: 5em;
+    margin: 30px 0;
+    font-weight: bold;
+    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+}
+
+.display .milliseconds {
+    font-size: 0.4em; /* Smaller font for milliseconds */
+    margin-left: 10px;
+    align-self: flex-end; /* Align to the bottom of the larger numbers */
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Control Buttons */
+.controls, .countdown-set-controls, .countdown-run-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.control-button {
+    border: none;
+    padding: 18px 35px;
+    font-size: 1.6em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    min-width: 140px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.start-btn {
+    background: #28a745; /* Green */
+    color: white;
+}
+
+.start-btn:hover {
+    background: #218838;
+    transform: translateY(-3px);
+}
+
+.pause-btn {
+    background: #ffc107; /* Yellow/Orange */
+    color: #333;
+}
+
+.pause-btn:hover {
+    background: #e0a800;
+    transform: translateY(-3px);
+}
+
+.continue-btn {
+    background: #17a2b8; /* Blue */
+    color: white;
+}
+
+.continue-btn:hover {
+    background: #138496;
+    transform: translateY(-3px);
+}
+
+.clear-btn {
+    background: #dc3545; /* Red */
+    color: white;
+}
+
+.clear-btn:hover {
+    background: #c82333;
+    transform: translateY(-3px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Countdown Keypad */
+.countdown-input-section {
+    margin-top: 30px;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 0 auto 20px auto;
+    max-width: 300px;
+}
+
+.num-btn {
+    background: #343a40; /* Darker grey */
+    color: white;
+    border: none;
+    padding: 20px;
+    font-size: 2em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.num-btn:hover {
+    background: #495057;
+    transform: translateY(-3px);
+}
+
+.num-btn.zero {
+    grid-column: span 3; /* Make the zero button span all columns */
+}
