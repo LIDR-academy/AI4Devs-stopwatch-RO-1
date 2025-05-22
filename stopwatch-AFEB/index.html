@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer and Countdown</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="wrapper state-menu" id="wrapper">
+            <!-- ===== MENU ===== -->
+            <section class="screen menu">
+                <div class="options">
+                    <div class="option" id="stopwatchOption">
+                        <div class="icon"></div>
+                        <h2>Stopwatch</h2>
+                    </div>
+                    <div class="option" id="countdownOption">
+                        <div class="icon down"></div>
+                        <h2>Countdown</h2>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- ===== STOPWATCH ===== -->
+            <section class="screen stopwatch">
+                <div class="display" id="swDisplay">00:00:00.000</div>
+                <div class="controls">
+                    <button id="swStart">Start</button>
+                    <button id="swClear">Clear</button>
+                </div>
+                <nav class="bottom-nav">
+                    <button class="backBtn" data-target="menu">
+                        <span class="arrow">←</span> Back
+                    </button>
+                </nav>
+            </section>
+    
+            <!-- ===== COUNTDOWN ===== -->
+            <section class="screen countdown">
+                <div class="display" id="cdDisplay">00:00:00</div>
+    
+                <!-- fase de input -->
+                <div class="numpad" id="numpad">
+                    <!-- fila 5–9 + Set -->
+                    <button class="num">5</button>
+                    <button class="num">6</button>
+                    <button class="num">7</button>
+                    <button class="num">8</button>
+                    <button class="num">9</button>
+                    <button class="action" id="cdSet">Set</button>
+                    <!-- fila 0–4 + Clear -->
+                    <button class="num">0</button>
+                    <button class="num">1</button>
+                    <button class="num">2</button>
+                    <button class="num">3</button>
+                    <button class="num">4</button>
+                    <button class="action clear-input" id="cdClearInput">Clear</button>
+                </div>
+    
+                <!-- controles de countdown (ocultos hasta hacer “Set”) -->
+                <div class="controls" id="cdControls" hidden>
+                    <button id="cdPause">Pause</button>
+                    <button id="cdReset">Reset</button>
+                </div>
+    
+                <nav class="bottom-nav">
+                    <button class="backBtn" data-target="menu">
+                        <span class="arrow">←</span> Back
+                    </button>
+                </nav>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
