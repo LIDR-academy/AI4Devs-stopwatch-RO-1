@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Best online clock timer in the world - Powered by el compa ChatGPT</title>
+  <script defer src="script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-center min-h-screen flex flex-col justify-center items-center p-4">
+  <h1 class="text-3xl font-bold mb-2">🕹️ Best online clock timer in the world</h1>
+  <p class="mb-6 text-gray-600">Powered by el compa ChatGPT</p>
+
+  <div id="clock-controls" class="flex flex-wrap justify-center gap-4 mb-6">
+    <button id="addChrono" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">➕ Cronómetro</button>
+    <button id="addCountdown" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">➕ Cuenta regresiva</button>
+  </div>
+  <div class="flex flex-wrap justify-center gap-4 mb-6">
+    <button onclick="toggleTheme()" class="bg-gray-600 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">🌓 Cambiar tema</button>
+    <button onclick="exportHistory()" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">📄 Exportar historial</button>
+  </div>
+
+  <div id="clocks" class="grid gap-6 justify-center"></div>
+
+  <footer class="mt-10 bg-gray-800 text-white p-4 w-full max-w-4xl">
+    <h2 class="text-lg font-semibold mb-2">📜 Historial de relojes</h2>
+    <ul id="history" class="text-left text-sm max-h-48 overflow-y-auto list-disc list-inside"></ul>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded shadow-lg text-center max-w-md mx-auto">
+      <p id="modal-message" class="mb-4 text-lg font-semibold"></p>
+      <button onclick="closeModal()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">OK</button>
+    </div>
+  </div>
+</body>
+</html>
