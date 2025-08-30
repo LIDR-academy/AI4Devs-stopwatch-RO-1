@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stopwatch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
+    }
+
+    .display {
+      font-size: 100px;
+      background-color: #e6e6ff;
+      padding: 20px 40px;
+      border: 8px solid #333;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 30px;
+      min-width: 700px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .btn {
+      padding: 20px 40px;
+      font-size: 40px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    .start {
+      background-color: #00cc00;
+      color: black;
+    }
+
+    .clear {
+      background-color: #ff0000;
+      color: black;
+    }
+
+    @media screen and (max-width: 768px) {
+      .display {
+        font-size: 60px;
+        min-width: auto;
+        padding: 20px;
+      }
+
+      .btn {
+        font-size: 30px;
+        padding: 15px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="display" class="display">00:00:00:000</div>
+  <div class="buttons">
+    <button id="startBtn" class="btn start">Start</button>
+    <button id="clearBtn" class="btn clear">Clear</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
